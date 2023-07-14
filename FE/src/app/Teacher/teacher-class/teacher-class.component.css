@@ -1,0 +1,35 @@
+.title-header {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.color {
+  background: #00bdd6;
+  font-weight: 600;
+  color: white;
+  float: right;
+  position: absolute;
+  top: 19px;
+  right: 88px;
+}
+
+.container-fluid {
+  padding: 0px 88px;
+}
+
+.mat-mdc-row:nth-child(even), mat-mdc-row:hover, .group-button:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.mat-mdc-row:nth-child(odd), mat-mdc-row:hover, .group-button:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+.mat-color {
+  color: #00bdd6 !important;
+}
+.mat-color-delete {
+  color: #f22128 !important;
+}

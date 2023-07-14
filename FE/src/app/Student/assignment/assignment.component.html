@@ -1,0 +1,93 @@
+<div *ngIf="(helper.APP_SHOW_PROCESSING | async)|| isLoading" class="loader loading-indicator">
+</div>
+<div *ngIf="!(helper.APP_SHOW_PROCESSING | async) " class="container-fluid custom">
+  <div class="left-side">
+    <div class="content-title">
+      <h1>(Assignment) {{title}} </h1>
+    </div>
+    <div class="inside-box">
+      <div class="assignment">
+        Assignment Content
+      </div>
+      <div class="text-assignment" [innerHTML]="description">
+      </div>
+      <div class="requirement">
+        Submit back all in zip file here
+      </div>
+    </div>
+    <div class="addition-file">
+      <label>Addition Files:</label>
+    </div>
+    <div class="inside-box-file">
+      <p class="file-submit">--</p>
+    </div>
+    <div class="dueDate-time-submit">
+      <span class="dueDate-tittle">Due date:</span> {{dueDate|date:'medium'}}
+    </div>
+    <hr>
+    <div class="status-box text-lg-left">
+      <div class="submition-status">
+        <div class="submition-tittle">
+          <label>Submission status:</label>
+          <div *ngIf="!status" class="box-status not_submited_color">
+            Not Submit
+          </div>
+          <div *ngIf="status" class="box-status submited_color">
+            {{status}}
+          </div>
+
+        </div>
+      </div>
+
+      <div class="Submission-time">
+        <div class="submition-tittle" style="width: 210px;">
+          <label>Submission time:</label>
+          <div *ngIf="submitDate" class="submission-time">
+            {{submitDate|date:'medium'}}
+          </div>
+          <div *ngIf="!submitDate" class="submission-time">
+            --
+          </div>
+
+        </div>
+      </div>
+      <div class="submittions-file">
+        <div class="submition-tittle" style="width: 298px!important;"
+        >
+          <label>File Submission:</label>
+          <div class="">
+            {{this.files != null ? this.files.name : null}}
+            {{this.files != null ? null : "--"}}
+            <a (click)="downloadFile()" *ngIf="contentData!=null" [href]="fileUrl"
+               download="{{fileType}}">DownloadFile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="right-side">
+    <div class="no-content-title">
+      <h1>Your work</h1>
+    </div>
+    <div class="inside-box">
+      <div (fileDropped)="onFileDropped($event)" appDnd class="container">
+        <input #fileDropRef (change)="fileBrowseHandler($event)" id="fileDropRef" multiple type="file"/>
+        <mat-icon>backup</mat-icon>
+        <h3>Drag and drop file here</h3>
+        <h3>or</h3>
+        <a for="fileDropRef" href="fileDropRef">Browse for file</a>
+        <div *ngIf="files">
+          {{this.files != null ? this.files.name : "--"}}
+        </div>
+      </div>
+      <div *ngIf="files" class="d-flex justify-content-center" style="margin-top: 20px">
+        <button (click)="onsubmit()" class="mark" mat-flat-button>Mark as Done</button>
+      </div>
+    </div>
+    <div *ngIf="isSubmited" class="inside-box-score">
+      <h2>Your Mark</h2>
+      <div>Total: {{this.score}}</div>
+    </div>
+  </div>
+</div>

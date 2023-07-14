@@ -1,0 +1,38 @@
+<div style="max-width:100%">
+  <ng-select
+    class="custom-ng-select"
+    style="color:#3B4850"
+    #searchInput
+    [searchable]="check"
+    [formControl]="inputControl"
+    [items]="dataSource"
+    [virtualScroll]="true"
+    [loading]="loading"
+    [bindLabel]="inputLabel"
+    [bindValue]="inputValue"
+    placeholder="{{ placeholder }}"
+    (scroll)="onScroll($event)"
+    (scrollToEnd)="onScrollToEnd()"
+    (search)="onSearch($event)"
+    (change)="onChange($event)"
+    [typeahead]="searchInput$"
+    [readonly]="isReadonly"
+    [clearable]="clearable"
+    [notFoundText]="notFoundText"
+    [typeToSearchText]="typeToSearchText"
+    (clear)="onClear($event)"
+    (open)="onOpen($event)"
+    [searchFn]="customSearchFn"
+    [appendTo]="appendTo"
+    [multiple]="multiple"
+    (keydown.enter)="$event.stopPropagation()"
+  >
+    <ng-template ng-option-tmp let-item="item" let-index="index">
+      <ng-container [ngTemplateOutlet]="selectOption || defaultNgOption"
+        [ngTemplateOutletContext]="{ $implicit: item, index: index }"></ng-container>
+      <ng-template #defaultNgOption>
+        <div>{{ item[inputLabel] }}</div>
+      </ng-template>
+    </ng-template>
+  </ng-select>
+</div>

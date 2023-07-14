@@ -1,0 +1,33 @@
+<div class="container">
+  <h2 class="title">Full featured editor demo</h2>
+
+  <div class="content">
+    <div class="display">
+      <!-- <div class="logo">
+        <img src="../assets/ngx-editor.svg" />
+        <div class="subtitle">Rich Text Editor for angular using ProseMirror</div>
+      </div> -->
+    </div>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+      <div class="editor">
+        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+        </ngx-editor-menu>
+        <ngx-editor [(ngModel)]="html" [editor]="editor" formControlName="editorContent">
+        </ngx-editor>
+      </div>
+    </form>
+    <button (click)="onSubmit()" class="btn btn-primary" type="submit">Submit</button>
+
+    <!-- <div class="editor">
+    <ngx-editor [editor]="editor" [(ngModel)]="editordoc">
+    </ngx-editor>
+  </div> -->
+  </div>
+</div>
+<h3>Html ecrit en string :</h3>
+<div class="html">
+  {{ html }}
+</div>
+<h3>Relecture html :</h3>
+<div [innerHTML]="renderedHtmlContent"></div>

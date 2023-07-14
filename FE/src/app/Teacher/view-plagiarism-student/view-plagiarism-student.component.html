@@ -1,0 +1,15 @@
+<div class="container-fluid mt-5">
+  <div class="container-compare" style="display: flex">
+    <div class="name-compare">
+      <label id="StudentId1">{{studentCode}}</label>
+      <div class="student-name">{{studentName}}</div>
+    </div>
+    <div class="name-compare name-compare-right">
+      <label id="StudentId2">{{studentCodeCompare}}</label>
+      <div class="student-name">{{studentNameCompare}}</div>
+    </div>
+  </div>
+  <div class="editor-container mt-5">
+    <nu-monaco-diff-editor [options]="editorOptions" [old]="old" [new]="new"></nu-monaco-diff-editor>
+  </div>
+</div>

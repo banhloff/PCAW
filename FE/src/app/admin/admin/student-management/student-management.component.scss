@@ -1,0 +1,121 @@
+thead {
+  background: #f8f9fa !important;
+}
+
+.container-fluid {
+  padding: 0px 30px;
+  margin-top: 20px;
+}
+
+.ng-value-container {
+  margin-top: 0px !important;
+}
+
+.btn-cus {
+  width: 151px;
+  padding: 21px 82px;
+  margin-top: 32px;
+  color: #8353e2 !important;
+  border: 1px solid #8353e2;
+}
+
+.import {
+  float: right;
+  color: #47cfe1 !important;
+  border: 1px solid #47cfe1 !important;
+}
+
+label {
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.btn-lst {
+  width: 100px !important;
+  min-width: unset !important;
+  border-radius: 20px;
+  font-size: 0.8vw;
+  font-weight: 600;
+  display: inline-table;
+  margin: 10px;
+}
+
+.btn-lst-class {
+  width: 140px !important;
+  min-width: unset !important;
+  border-radius: 20px;
+  font-size: 0.6vw;
+  font-weight: 600;
+  display: inline-table;
+  margin: 10px;
+  float: left;
+}
+
+.cust-text {
+  font-weight: 500;
+  font-size: 0.6vw;
+  letter-spacing: 0.3px;
+}
+
+.form-group {
+  margin-bottom: -20px;
+}
+
+
+.mat-color {
+  color: #00bdd6 !important;
+}
+
+.mat-color-delete {
+  color: #f22128 !important;
+}
+
+//test
+/* Structure */
+.example-container {
+  position: relative;
+}
+
+.example-table-container {
+  position: relative;
+  min-height: 450px;
+  max-height: 550px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.example-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: -583px;
+  right: 0;
+  //background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  padding: 10px !important;
+}
+
+.example-rate-limit-reached {
+  max-width: 360px;
+  text-align: center;
+}
+
+/* Column Widths */
+.mat-column-number,
+.mat-column-state {
+  max-width: 64px;
+}
+
+.mat-column-created {
+  max-width: 124px;
+}

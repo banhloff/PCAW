@@ -1,0 +1,91 @@
+<div *ngIf="helper.APP_SHOW_PROCESSING | async" class="loader loading-indicator">
+</div>
+<div class="container-fluid mt-2" *ngIf="!(helper.APP_SHOW_PROCESSING | async)">
+  <form (ngSubmit)="onSubmit()" [formGroup]="addAssignmentForm">
+    <div class="row">
+      <div class="col-4 col-md-12 col-lg-4 mb-3">
+          <div class="form-group">
+            <label for="Assignment_Name">Assignment Name:<span style="color: red">*</span></label>
+            <input class="form-control input-custom" formControlName="Assignment_Name" style="padding: 17px"
+                   id="Assignment_Name" type="text">
+            <span
+              *ngIf="!addAssignmentForm.get('Assignment_Name').valid&&addAssignmentForm.get('Assignment_Name').touched"
+              class="help-block">
+               <span
+                 *ngIf="addAssignmentForm.get('Assignment_Name').errors['nameIsForbidden']">name is invalid</span>
+               <span
+                 *ngIf="addAssignmentForm.get('Assignment_Name').errors['required']" style="color: red">field is required</span>
+             </span>
+          </div>
+      </div>
+      <div class="col-4 col-md-12 col-lg-4 mb-3 d-flex flex-column">
+        <label>DueDate:</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+            <input formControlName="start" matStartDate placeholder="Start date">
+            <input formControlName="end" matEndDate placeholder="End date">
+          </mat-date-range-input>
+          <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+      <div class="col-4 col-md-12 col-lg-4 mb-3">
+        <label>Test case IO</label>
+        <input class="form-control ng-value-container input-custom" formControlName="Test_case_IO" id="itemName"
+               name="code" (change)="fileChange($event)"
+               type="file">
+      </div>
+      <div class="col-4 col-md-12 col-lg-4 mb-3">
+        <div class="form-group">
+          <label for="Assignment_Code">Assignment Code:<span style="color: red">*</span></label>
+          <input class="form-control input-custom" formControlName="Assignment_Code"
+                 id="Assignment_Code" type="text">
+          <span
+            *ngIf="!addAssignmentForm.get('Assignment_Code').valid&&addAssignmentForm.get('Assignment_Code').touched"
+            class="help-block">
+               <span
+                 *ngIf="addAssignmentForm.get('Assignment_Code').errors['nameIsForbidden']">name is invalid</span>
+               <span
+                 *ngIf="addAssignmentForm.get('Assignment_Code').errors['required']"
+                 style="color: red">field is required</span>
+             </span>
+        </div>
+      </div>
+<!--      <div class="col-4 col-md-12 col-lg-4 mb-3">-->
+<!--        <div class="form-group">-->
+<!--          <label for="title">Title:<span style="color: red">*</span></label>-->
+<!--          <input class="form-control input-custom" formControlName="title"-->
+<!--                 id="title" type="text">-->
+<!--          <span-->
+<!--            *ngIf="!addAssignmentForm.get('title').valid&&addAssignmentForm.get('title').touched"-->
+<!--            class="help-block">-->
+<!--               <span-->
+<!--                 *ngIf="addAssignmentForm.get('title').errors['nameIsForbidden']">name is invalid</span>-->
+<!--               <span-->
+<!--                 *ngIf="addAssignmentForm.get('title').errors['required']"-->
+<!--                 style="color: red">field is required</span>-->
+<!--             </span>-->
+<!--        </div>-->
+<!--      </div>-->
+      <!--      <div class="col-4 col-md-12 col-lg-4 mb-3">-->
+      <!--        <div class="form-group">-->
+      <!--          <label for="isOpen">Is Open:<span style="color: red">*</span></label>-->
+      <!--          <input class="form-control " formControlName="isOpen"-->
+      <!--                 id="isOpen" type="radio">-->
+      <!--        </div>-->
+      <!--      </div>-->
+    </div>
+  </form>
+  <div *ngIf="editor" class="ngxEditor__wrapper">
+    <form (ngSubmit)="onSubmit()" [formGroup]="formEditor">
+      <div class="editor">
+        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+        </ngx-editor-menu>
+        <ngx-editor [(ngModel)]="html" [editor]="editor" formControlName="editorContent">
+        </ngx-editor>
+      </div>
+    </form>
+  </div>
+  <button (click)="onSubmit()" class="btn btn-primary btn-cus" type="submit">Submit</button>
+</div>

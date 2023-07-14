@@ -1,0 +1,60 @@
+.flex-content {
+  display: flex;
+  align-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin-left: 10px;
+  grid-column-gap: 50px;
+}
+
+.container-fluid {
+  padding: 0px 88px;
+}
+
+.right-content {
+  //margin-left: 30px;
+}
+
+.class-detail {
+  width: 200px;
+}
+
+.button-process {
+  color: white;
+  background-color: rgb(159, 9, 14);
+  width: 150px;
+  border-radius: 10px;
+  font-size: 14px;
+  box-shadow: none;
+  height: 36px;
+  border: 0px;
+  font-weight: 700;
+}
+
+.button-finnish {
+  color: white;
+  background-color: rgb(17, 123, 52);
+  width: 150px;
+  border-radius: 10px;
+  font-size: 14px;
+  box-shadow: none;
+  height: 36px;
+  border: 0px;
+  display: inline-table;
+}
+
+.mat-accent {
+  color: #00bdd6!important;
+  background-color: #FFFFFF!important;
+}
+
+//.mat-mdc-table, .example-container {
+//  width: 100%;
+//  max-height: 400px;
+//  overflow: auto;
+//}
+//
+//.mat-column-name, .example-container {
+//  height: 200px;
+//}

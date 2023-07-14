@@ -1,0 +1,26 @@
+<div class="card-content">
+  <button  mat-raised-button [class]="process==='Processing'?'button-process':'button-finnish'" >
+    {{process}}
+  </button>
+  <div class="subject mt-1 flex-content">
+    <mat-icon>subject</mat-icon>
+    Subject: <span class="subject-span">{{subject}}</span>
+  </div>
+  <div class="class flex-content">
+    <mat-icon class="icon-color">class</mat-icon>
+    Class: <span class="span">{{class}}</span>
+  </div>
+  <div class="dueDate flex-content">
+    <mat-icon class="icon-color">date_range</mat-icon>
+    Due date: <span class="span">{{dueDate}}</span>
+  </div>
+  <div class="dueDate flex-content">
+    <mat-icon class="icon-color">account_circle</mat-icon>
+    Instructor: <span class="span">{{instructor}}</span>
+  </div>
+  <div class="flex-content">
+    <a [routerLink]=viewClassLink class="icon-block">View Class
+      <mat-icon >arrow_right_alt</mat-icon>
+    </a>
+  </div>
+</div>

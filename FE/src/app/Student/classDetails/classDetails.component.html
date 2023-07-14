@@ -1,0 +1,69 @@
+<div class="loader loading-indicator" *ngIf="helper.APP_SHOW_PROCESSING | async">
+</div>
+<div class="container-fluid" *ngIf="!(helper.APP_SHOW_PROCESSING | async)">
+  <div class="example-container mat-elevation-z8">
+    <div class="example-table-container">
+      <table [dataSource]="dataSource" mat-table
+      >
+        <!-- Number Column -->
+        <!-- <ng-container matColumnDef="number">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let row">{{row.number}}</td>
+        </ng-container> -->
+        <ng-container matColumnDef="actions">
+          <th *matHeaderCellDef mat-header-cell>actions</th>
+          <td *matCellDef="let row;" style="display: flex; margin-top: 5px;">
+            <button (click)="viewAssignment(row.assignment.id,row.assignment.langs)" mat-icon-button matTooltip="View">
+              <mat-icon color="accent">search</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="SUBMITDATE">
+          <th *matHeaderCellDef mat-header-cell>Submit Date</th>
+          <td *matCellDef="let row" mat-cell>{{row.date|date:'medium'}}</td>
+        </ng-container>
+        <!-- Title Column -->
+
+        <ng-container matColumnDef="PLARISM">
+          <th *matHeaderCellDef mat-header-cell>Plagiarism</th>
+          <td *matCellDef="let row" mat-cell>{{row.Plagiarism}}</td>
+        </ng-container>
+        <ng-container matColumnDef="STATUS">
+          <th *matHeaderCellDef mat-header-cell>Status</th>
+          <td *matCellDef="let row" mat-cell>
+            <button *ngIf="row.status!=''" [class]="row.status==='Incorrect'?'button-process':'button-finnish'"
+                    mat-raised-button>
+              {{row.status }}
+            </button>
+            <button *ngIf="row.status===''" class="notsubmitYet" mat-raised-button>
+              Not Submited
+            </button>
+          </td>
+        </ng-container>
+
+        <!--        <ng-container matColumnDef="fullName">-->
+        <!--          <th *matHeaderCellDef mat-header-cell>Name</th>-->
+        <!--          <td *matCellDef="let row" mat-cell>{{row.fullName}}</td>-->
+        <!--        </ng-container>-->
+        <ng-container matColumnDef="due_date">
+          <th *matHeaderCellDef mat-header-cell> Date</th>
+          <td *matCellDef="let row" mat-cell> {{row.assignment.due_date|date:'medium'}} </td>
+        </ng-container>
+
+        <!-- Created Column -->
+        <ng-container matColumnDef="assignment_code">
+          <th *matHeaderCellDef disableClear mat-header-cell mat-sort-header>
+            Assignment Name
+          </th>
+          <td *matCellDef="let row" mat-cell>{{row.assignment.assignment_code }}</td>
+        </ng-container>
+
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+      </table>
+    </div>
+
+    <mat-paginator [pageSize]="5"
+                   showFirstLastButtons></mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,163 @@
+.inside-box {
+  border: 3px solid #4069e5;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fafafb;
+  height: 300px;
+}
+.status-box {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+.inside-box-file {
+  border: 3px solid #4069e5;
+  background-color: #fafafb;
+  border-radius: 10px;
+}
+.left-side {
+  width: 70%;
+  margin: 50px;
+}
+.right-side {
+  width: 30%;
+  margin: 50px 50px 50px 0px;
+}
+.custom {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+.addition-file {
+  margin-top: 20px;
+  padding-left: 15px;
+  font-weight: 500;
+  font-size: 20px;
+}
+.text-assignment {
+  font-size: 14px;
+  line-height: 1.8;
+}
+.dueDate-tittle {
+  font-weight: 500;
+}
+.dueDate-time-submit {
+  margin-top: 10px;
+}
+.submition-status,
+.Submission-time,
+.submittions-file {
+  padding: 20px 70px 20px 15px;
+  border-radius: 10px;
+  background-color: #ebecec;
+  font-size: 17px;
+  font-weight: 500;
+}
+.submittions-file{
+ padding-right:500px ;
+    position: relative;
+}
+.Submission-time,
+.submittions-file {
+  margin-left: 40px;
+}
+.submission-time {
+  padding: 5px;
+  font-weight: 400;
+}
+
+.box-status {
+  color: red;
+  padding: 5px;
+  background-color: #fbbdbf;
+  border-radius: 7px;
+  text-align: center;
+  font-weight: 400;
+  padding-left: 2px !important;
+}
+
+.content-check {
+  color: red;
+  float: right;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.box-in-box {
+  margin: auto;
+  width: 50%;
+  margin-top: 60px;
+  display: grid;
+  text-align: center;
+  border: 2px dashed #bcc1ca;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.href-browse {
+  color: #00bdd6;
+  font-size: 17px;
+
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+.flex-content {
+  display: flex;
+  align-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin-left: 10px;
+  grid-column-gap: 50px;
+}
+
+.container-fluid {
+  padding: 0px 88px;
+  margin-top: 50px;
+}
+
+.class-detail {
+  width: 200px;
+}
+
+.button-process {
+  color: white!important;
+  background-color: rgb(159, 9, 14)!important;
+  width: 150px;
+  border-radius: 10px;
+  font-size: 14px;
+  box-shadow: none;
+  height: 36px;
+  border: 0px;
+  font-weight: 700;
+}
+
+.button-finnish {
+  color: white!important;
+  background-color: rgb(17, 123, 52)!important;
+  width: 150px;
+  border-radius: 10px;
+  font-size: 14px;
+  box-shadow: none;
+  height: 36px;
+  border: 0px;
+  display: inline-table;
+}
+
+.notsubmitYet {
+  color: white!important;
+  background-color: rgb(253, 184, 19)!important;
+  width: 150px;
+  border-radius: 10px;
+  font-size: 14px;
+  box-shadow: none;
+  height: 36px;
+  border: 0px;
+  display: inline-table;
+}
+
+.mat-accent {
+  background-color: white !important;
+  color: #00bdd6 !important;
+}

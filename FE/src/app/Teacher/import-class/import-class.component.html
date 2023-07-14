@@ -1,0 +1,112 @@
+<div *ngIf="helpservice.APP_SHOW_PROCESSING | async" class="loader loading-indicator">
+</div>
+<div *ngIf="!(helpservice.APP_SHOW_PROCESSING | async)" class="container-fluid custom">
+  <div class="left-side">
+    <div class="container-fluid">
+      <h1>Import class</h1>
+      <form (submit)="onSubmit()" [formGroup]="importClass" class="example-form">
+        <div class="row">
+          <div class="col-3 col-md-3 col-lg-3 mb-3">
+            <label>Class Name<span style="color: red">*</span></label>
+            <input class="form-control ng-value-container input-custom" formControlName="className" id="className"
+                   name="className"
+                   type="text">
+          </div>
+          <div class="col-3 col-md-3 col-lg-3 mb-3">
+            <label>Class Code<span style="color: red">*</span></label>
+            <input class="form-control ng-value-container input-custom" formControlName="codeClass" id="codeClass"
+                   name="codeClass"
+                   type="text">
+          </div>
+          <div class="col-3 col-md-3 col-lg-3 mb-3">
+            <label>Semester</label>
+            <ng-select
+              [items]="lstSemester"
+              [notFoundText]="'Not Found'"
+              [placeholder]="'Please select input'"
+              bindLabel="name"
+              bindValue="id"
+              formControlName="semester"
+              name="semester">
+            </ng-select>
+          </div>
+          <div class="col-3 col-md-3 col-lg-3 mb-3">
+            <label>Subject</label>
+            <ng-select
+              [items]="lstSubject"
+              [notFoundText]="'Not Found'"
+              [placeholder]="'Please select input'"
+              bindLabel="subject_code"
+              bindValue="id"
+              formControlName="subject"
+              name="subject">
+            </ng-select>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="container-fluid">
+      <div class="example-container mat-elevation-z2">
+        <div class="example-table-container">
+          <table mat-table [dataSource]="data" class="example-table" matSort matSortActive="created" matSortDisableClear
+                 matSortDirection="desc">
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>actions</th>
+              <td *matCellDef="let row; let i = index;" class="mat-cell-button" style="display: flex; margin-top: 5px;">
+                <button (click)="removeIndex(i)" mat-icon-button>
+                  <mat-icon color="warn">delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+            <!-- Title Column -->
+            <ng-container matColumnDef="EMAIL">
+              <th mat-header-cell *matHeaderCellDef>EMAIL</th>
+              <td *matCellDef="let row" mat-cell>{{row.email}}</td>
+            </ng-container>
+
+            <!-- State Column -->
+            <ng-container matColumnDef="FIRST_NAME">
+              <th mat-header-cell *matHeaderCellDef>NAME</th>
+              <td *matCellDef="let row" mat-cell>{{row.first_name}} {{row.last_name}}</td>
+            </ng-container>
+
+            <!-- Created Column -->
+            <ng-container matColumnDef="STUDENT_CODE">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                STUDENT CODE
+              </th>
+              <td *matCellDef="let row" mat-cell>{{row.student_code }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+
+        <mat-paginator [length]="resultsLength" [pageSize]="5"
+          aria-label="Select page of GitHub search results"></mat-paginator>
+      </div>
+
+    </div>
+  </div>
+  <div class="right-side">
+    <button (click)="onSubmit()" color="accent" mat-raised-button style="float: right;">Submit import</button>
+    <div class="no-content-title">
+      <h1>Your work</h1>
+    </div>
+    <div class="inside-box">
+      <div class="content-check">Upload Student List</div>
+      <div class="box-in-box">
+        <div (fileDropped)="onFileDropped($event)" appDnd>
+          <div class="icon">
+            <mat-icon>backup</mat-icon>
+          </div>
+          <label>Drop files here</label>
+          OR
+          <!--        <a (change)="onFileSelected($event)" class="href-browse" href="#">Browse Files</a>-->
+          <input #fileDropRef (change)="onFileSelected($event)" id="fileDropRef" multiple type="file">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

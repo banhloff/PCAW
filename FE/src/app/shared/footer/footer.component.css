@@ -1,0 +1,27 @@
+footer {
+  background-color: #f8f9fa;
+  height:200px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.site-footer .main-footer {
+  padding-top: 45px;
+  padding-bottom: 25px;
+}
+.green ,.yellow, .blue{
+  font-weight: 700;
+  font-size: 20px;
+text-space: 5px;
+}
+.site-footer-title{
+  font-size: 25px;
+  font-weight: 700;
+  color: #45cee0;
+}
+a{
+  color: #45cee0;
+  text-decoration: underline;
+  
+}

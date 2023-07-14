@@ -1,0 +1,16 @@
+<div class="loader loading-indicator" *ngIf="helper.APP_SHOW_PROCESSING | async">
+</div>
+<div  *ngIf="!(helper.APP_SHOW_PROCESSING | async)" class="container-fluid " style="margin-top: 50px;">
+  <div class="row mx-md-1">
+    <div *ngFor="let result of data" class="col-lg-3 col-md-6 col-sm-6 px-md-3 mb-5">
+      <app-d-card
+        process="{{result.process}}"
+        class="{{result.code}}"
+        dueDate="{{result.semester.date_end|date:'M/d/yy h:mm a'}}"
+        subject="{{result.subject.name}}"
+        instructor="{{result.instructor.email}}"
+        viewClassLink="../teacher-class/{{result.id}}/{{result.code}}">
+      </app-d-card>
+    </div>
+  </div>
+</div>

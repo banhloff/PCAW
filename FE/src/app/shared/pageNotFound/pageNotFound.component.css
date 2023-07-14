@@ -1,0 +1,49 @@
+/* Center the content vertically and horizontally */
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+    text-shadow: 1px 1px #fff;
+  }
+  
+  p {
+    font-size: 1.5rem;
+    color: #777;
+    text-align: center;
+  }
+  
+  /* Add a button to return to the home page */
+  button {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    margin-top: 2rem;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #0069d9;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  /* Add a hover effect to the button */
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
+  }

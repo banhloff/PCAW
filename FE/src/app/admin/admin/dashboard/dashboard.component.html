@@ -1,0 +1,68 @@
+<div class="loader loading-indicator" *ngIf="helper.APP_SHOW_PROCESSING | async">
+</div>
+<div class="d-flex flex-row " style="    margin-top: 10px;margin-left: 10px;margin-bottom: 10px;
+" *ngIf="!(helper.APP_SHOW_PROCESSING | async)">
+  <button disabled mat-icon-button>
+    <mat-icon style="transform: scale(1)" svgIcon="ic_dashboard"></mat-icon>
+  </button>
+  <p class="overview">Overview</p>
+</div>
+<div class="container-fluid">
+  <div class="row mx-md-1 gx-1 gy-3">
+    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 mb-3">
+      <div class="box  mx-md-1">
+        <div class="d-flex justify-content-between account-signUp content">
+          <div class="">
+            <h2 class="content-box">Account Sign Up</h2>
+            <p><span class="span-number">{{accountSignUp}}</span></p>
+          </div>
+          <div class="mat-image">
+            <mat-icon class="icon-display" svgIcon="ic_signupAccount"></mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 mb-3">
+      <div class="box  mx-md-1">
+        <div class="d-flex justify-content-between asssigment content">
+          <div class="">
+            <h2 class="content-box">Assignment</h2>
+            <p><span class="span-number">{{assginment}}</span></p>
+          </div>
+          <div class="mat-image">
+            <mat-icon class="icon-display" svgIcon="ic_fileAss"></mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 mb-3">
+      <div class="box  mx-md-1">
+        <div class="d-flex justify-content-between studentSubmited content">
+          <div class="">
+            <h2 class="content-box">Student Submitted File</h2>
+            <p><span class="span-number">{{studentSubmitted}}</span></p>
+          </div>
+          <div class="mat-image">
+            <mat-icon class="icon-display" svgIcon="ic_studentSubmit"></mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="chart">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [dataLabels]="chartOptions.dataLabels"
+      [plotOptions]="chartOptions.plotOptions"
+      [yaxis]="chartOptions.yaxis"
+      [legend]="chartOptions.legend"
+      [fill]="chartOptions.fill"
+      [stroke]="chartOptions.stroke"
+      [tooltip]="chartOptions.tooltip"
+      [xaxis]="chartOptions.xaxis"
+    ></apx-chart>
+  </div>
+
+</div>
+

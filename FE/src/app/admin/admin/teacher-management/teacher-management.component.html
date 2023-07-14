@@ -1,0 +1,142 @@
+<div *ngIf="helper.APP_SHOW_PROCESSING | async" class="loader loading-indicator"></div>
+<div class="example-container mat-elevation-z0">
+  <div *ngIf="isLoading || isRateLimitReached"
+       class="example-loading-shade">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <div *ngIf="isRateLimitReached" class="example-rate-limit-reached">
+      GitHub's API rate limit has been reached. It will be reset in one minute.
+    </div>
+  </div>
+</div>
+<div *ngIf="!(helper.APP_SHOW_PROCESSING | async)" class="container-fluid">
+  <form [formGroup]="submitForm" class="form-group">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-12 col-3 mb-3">
+        <div class="form-group">
+          <label>Teacher Code:</label>
+          <input class="form-control input input-custom" formControlName="studentCode" id="assignmentName"
+                 placeholder="Search Teacher Code"
+                 type="text">
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12 col-3 mb-3">
+        <label>Subject</label>
+        <ng-select
+          [items]="lstSubject"
+          [notFoundText]="'No Record Found'"
+          [placeholder]="'Please input choose'"
+          bindLabel="subject_code"
+          bindValue="subject_code"
+          formControlName="subject"
+          name="itemCode">
+        </ng-select>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12 col-3 mb-3">
+        <label>Class</label>
+        <ng-select
+          [items]="lstClass"
+          [notFoundText]="'No Record Found'"
+          [placeholder]="'Please input choose'"
+          bindLabel="code"
+          bindValue="code"
+          formControlName="class"
+          name="itemCode">
+        </ng-select>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-sm-12 col-3 mb-3">
+        <label></label>
+        <button (click)="search()" class="btn btn-cus" mat-flat-button type="button">Search</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="example-container mat-elevation-z3">
+    <div class="example-table-container">
+      <table [dataSource]="data" class="example-table" mat-table matSort matSortActive="created" matSortDirection="desc"
+             matSortDisableClear>
+        <!-- Number Column -->
+        <!-- <ng-container matColumnDef="number">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let row">{{row.number}}</td>
+        </ng-container> -->
+        <ng-container matColumnDef="ACTION">
+          <th *matHeaderCellDef mat-header-cell>ACTION</th>
+          <td *matCellDef="let row;" class="group-button" style="min-width: 200px!important;">
+            <button (click)="edit(row)" class="mat-color" mat-flat-button>
+              Edit
+            </button>
+            <button (click)="delete(row)" class="mat-color-delete mat-color" mat-flat-button>
+              Delete
+            </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="CLASS">
+          <th *matHeaderCellDef mat-header-cell>CLASS</th>
+          <td *matCellDef="let row" class="align-items-center text-center" mat-cell>
+            <div class="d-flex flex-row justify-content-evenly ">
+              <div *ngIf="row.teaches_classes.length>0">
+                <button *ngFor="let a of row.teaches_classes" class="btn-lst-class mx-1" disabled mat-flat-button
+                        style="background: #f5f2fd;color: #8353e2">{{a.code}}</button>
+              </div>
+              <ng-container *ngIf="row.teaches_classes.length==0">
+                <button  class="btn-lst-class mx-1" disabled mat-flat-button
+                         style="background: #f5f2fd;color: #8353e2">--</button>
+              </ng-container>
+            </div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="SUBJECT">
+          <th *matHeaderCellDef mat-header-cell>SUBJECT</th>
+          <td *matCellDef="let row" mat-cell>
+            <div class="d-flex flex-row justify-content-evenly ">
+              <div *ngIf="row.teaches_subjects.length>0">
+                <button *ngFor="let a of row.teaches_subjects" class="btn-lst " disabled mat-flat-button
+                        style="background: #ef9834;color: white">{{a.subject_code}}</button>
+              </div>
+              <ng-container *ngIf="row.teaches_subjects.length==0">
+                <button class="btn-lst" disabled mat-flat-button
+                        style="background: #00bdd6;color: white">Not Assign
+                </button>
+              </ng-container>
+            </div>
+
+          </td>
+        </ng-container>
+        <!-- Title Column -->
+        <ng-container matColumnDef="EMAIL">
+          <th *matHeaderCellDef mat-header-cell>EMAIL</th>
+          <td *matCellDef="let row" mat-cell>
+            {{row.email}}
+          </td>
+        </ng-container>
+
+        <!-- State Column -->
+        <ng-container matColumnDef="NAME">
+          <th *matHeaderCellDef mat-header-cell>NAME</th>
+          <td *matCellDef="let row" class="cust-text" mat-cell>{{row.first_name}} {{row.last_name}}</td>
+        </ng-container>
+        <!--        <tr *matNoDataRow class="mat-row" style="text-align-last: center;">-->
+        <!--          <td [attr.colspan]="displayedColumns.length" class="mat-cell ">-->
+        <!--            No data-->
+        <!--          </td>-->
+        <!--        </tr>-->
+        <!-- Created Column -->
+        <ng-container matColumnDef="TEACHERCODE">
+          <th *matHeaderCellDef disableClear mat-header-cell mat-sort-header>
+            TEACHER CODE
+          </th>
+          <td *matCellDef="let row"  class="cust-text float-start"
+              mat-cell>{{row.profile.code }}</td>
+        </ng-container>
+
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+      </table>
+    </div>
+
+    <mat-paginator (page)="handlePageEvent($event)" [length]="LengthTotal" [pageSize]="resultsLength"
+                   showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>

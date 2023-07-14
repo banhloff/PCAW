@@ -1,0 +1,43 @@
+<div class="tittle-row">
+<div class="tittle-left">
+  <button (click)="onDismiss()" class="btn button-close" color="accent">
+    <mat-icon>close</mat-icon>
+  </button>
+  <div class="tittle-join-class ml-2">Join class</div>
+</div>
+  <button (click)="joinClass()" class="button-join" color="accent" mat-flat-button>Join</button>
+</div>
+<div class="account-name container">
+  <div class="avatar">
+    <mat-icon svgIcon="ic_avatar" class="icon-display"></mat-icon>
+  </div>
+  <div class="account">
+    <div class="fullName">{{userName}}</div>
+    <div class="email">{{email}}</div>
+  </div>
+</div>
+<div class="class-code container">
+  <div class="tittle-join-class mt-2">Class Code</div>
+  <span><p class="mt-2 ">Ask your teacher for the class code, then enter it here</p></span>
+  <form [formGroup]="submitForm" class="form-group">
+    <div class="row">
+      <div class="mb-6 col-6 mb-3">
+        <label>Class Code</label>
+        <input class="form-control ng-value-container input-custom" formControlName="classCode" id="itemName" name="code"
+               type="text">
+      </div>
+      <div class="mb-6 col-6 mb-3">
+        <label>Class</label>
+        <ng-select
+          [items]="lstClass"
+          [notFoundText]="'No Record Found'"
+          [placeholder]="'Please input choose'"
+          bindLabel="name"
+          bindValue="id"
+          formControlName="class"
+          name="itemCode">
+        </ng-select>
+      </div>
+    </div>
+  </form>
+</div>

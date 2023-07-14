@@ -1,0 +1,59 @@
+<div class="tittle-row">
+  <div class="tittle-left">
+
+    <h2 class="tittle-join-class ml-2">Update Information</h2>
+  </div>
+  <button (click)="onDismiss()" class="btn button-close" color="accent">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div class="class-code container">
+  <form [formGroup]="submitForm" class="form-group">
+    <div class="row">
+      <div class="mb-6 col-6 ">
+        <label>STUDENT CODE</label>
+        <input class="form-control ng-value-container " formControlName="STUDENT_CODE" id="STUDENT_CODE"
+               name="STUDENT_CODE"
+               type="text">
+      </div>
+      <div class="mb-6 col-6 ">
+        <label>SUBJECT</label>
+        <mat-form-field appearance="fill">
+          <mat-select formControlName="SUBJECT" multiple>
+            <mat-option *ngFor="let topping of this.data.lstSubject"
+                        [value]="topping.id">{{topping.subject_code}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="mb-6 col-6 ">
+        <label>FIRST NAME</label>
+        <input class="form-control ng-value-container " formControlName="FIRST_NAME" name="FIRST_NAME"
+               type="text">
+      </div>
+      <div class="mb-6 col-6 ">
+        <label>CLASS</label>
+        <mat-form-field appearance="fill">
+          <mat-select formControlName="CLASS" multiple>
+            <mat-option *ngFor="let topping of this.data.lstClass"
+                        [value]="topping.id">{{topping.code}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="mb-6 col-6 ">
+        <label>LAST NAME</label>
+        <input class="form-control ng-value-container " formControlName="LAST_NAME" name="LAST_NAME"
+               type="text">
+      </div>
+      <div class="mb-6 col-6 ">
+        <label>EMAIL</label>
+        <input class="form-control ng-value-container " formControlName="EMAIL" name="EMAIL"
+               type="text">
+      </div>
+    </div>
+  </form>
+
+  <div class="d-flex flex-row flex-lg-wrap justify-content-between">
+    <button (click)="onDismiss()" class="button-join" mat-flat-button>Cancel</button>
+    <button (click)="update()" class="button-join" color="accent" mat-flat-button>Update information</button>
+  </div>
+</div>

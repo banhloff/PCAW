@@ -1,0 +1,7 @@
+.env
+__pycache__/
+gcs_credential.json
+server-ca.pem
+client-key.pem
+client-cert.pem
+

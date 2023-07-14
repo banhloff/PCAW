@@ -1,0 +1,24 @@
+mat-sidenav-container {
+  height: calc(205vh - 135vh);
+}
+mat-sidenav{
+    width: 200px;
+}
+
+.sidenav-content {
+  display: flex;
+  flex-direction: column;
+}
+.mat-tool{
+  background-color: white;
+  border-bottom: 1px solid #bbb;
+}
+label{
+  margin-bottom: 0px !important;
+  margin-top: 0.1rem;
+}
+
+mat-nav-list {
+  color: #878d97;
+}
+

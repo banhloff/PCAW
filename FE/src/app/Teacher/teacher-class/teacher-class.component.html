@@ -1,0 +1,62 @@
+<div class="loader loading-indicator" *ngIf="helper.APP_SHOW_PROCESSING | async"></div>
+<div class="container-fluid" *ngIf="!(helper.APP_SHOW_PROCESSING | async)">
+  <div class="title-header">
+    <h1>Class: {{className}}</h1>
+    <button class="color" mat-raised-button style="float:right" (click)="addAssignment()" >Add Assigment</button>
+  </div>
+  <div class="example-container mat-elevation-z1">
+    <div class="example-table-container">
+      <table mat-table [dataSource]="data" class="example-table" matSort matSortActive="created" matSortDisableClear
+             matSortDirection="desc">
+        <!-- Number Column -->
+        <!-- <ng-container matColumnDef="number">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let row">{{row.number}}</td>
+        </ng-container> -->
+        <ng-container matColumnDef="actions">
+          <th *matHeaderCellDef mat-header-cell>actions</th>
+          <td *matCellDef="let row;" class="group-button">
+            <button mat-flat-button class="mat-color" (click)="view(row)">
+              View
+            </button>
+            <button mat-flat-button class="mat-color" (click)="edit(row)">
+              Edit
+            </button>
+            <button mat-flat-button class="mat-color-delete mat-color" (click)="delete(row)">
+              Delete
+            </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="ENDDATE">
+          <th *matHeaderCellDef mat-header-cell>End date</th>
+          <td *matCellDef="let row" mat-cell>{{row.assignment.due_date|date:'medium'}}</td>
+        </ng-container>
+        <!-- Title Column -->
+        <ng-container matColumnDef="STARTDATE">
+          <th mat-header-cell *matHeaderCellDef>Start date</th>
+          <td *matCellDef="let row" mat-cell>{{row.assignment.start_date|date:'medium'}}</td>
+        </ng-container>
+
+        <!-- State Column -->
+        <ng-container matColumnDef="TOTALSUBMIT">
+          <th *matHeaderCellDef mat-header-cell>Total Submit</th>
+          <td *matCellDef="let row" mat-cell>{{row.assignment.sub_count}}/{{row.assignment.std_count}}</td>
+        </ng-container>
+
+        <!-- Created Column -->
+        <ng-container matColumnDef="ASSIGNMENT">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+            Assignment
+          </th>
+          <td *matCellDef="let row" mat-cell>{{row.assignment.assignment_code }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <mat-paginator [length]="resultsLength" [pageSize]="10"
+                   aria-label="Select page of GitHub search results"></mat-paginator>
+  </div>
+</div>

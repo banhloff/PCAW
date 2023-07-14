@@ -1,0 +1,90 @@
+<div *ngIf="isloading" class="loader loading-indicator">
+</div>
+<div class="main">
+  <div class="container">
+    <div class="logo">
+      <img alt="" src="../../../assets/icons/FPT.png">
+    </div>
+    <div class="in-top-box">
+      <div class="inside-top-box">
+        <div class="left-side" style="display: flex; flex-flow: column nowrap;">
+          <div style="display: flex;     width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 100px;">
+            <div>
+              <mat-icon class="icon-display" svgIcon="ic_imgwrite"></mat-icon>
+            </div>
+            <div>
+              <mat-icon class="icon-display" svgIcon="ic_imgbook"></mat-icon>
+            </div>
+            <div>
+              <mat-icon class="icon-display" svgIcon="ic_imgluv"></mat-icon>
+            </div>
+
+          </div>
+          <div class=" text-white" style="float:left">
+            <h2>Practice Coding Assignment Website</h2>
+            <span class="text-white">
+                          <p class=" text-title">
+                           Welcome to our website! We are a platform dedicated to helping you improve your coding skills and expand your knowledge in web development. Whether you're a beginner or an experienced developer, we offer a variety of resources including tutorials, articles, and practice exercises to help you sharpen your coding abilities. Join our community of learners today and take the first step towards mastering web development!
+                          </p>
+                      </span>
+          </div>
+        </div>
+        <div class="right-side">
+          <div class="logo-hssk">
+            <div class="logo-icon"></div>
+          </div>
+          <div class="title" translate>
+            <p class="sign-in-tittle">Sign Up</p>
+            <form (submit)="reqgister()" [formGroup]="registerForm">
+              <div class="sign-in-box">
+                <div class="form-group">
+                  <label class="label" style="float: left;">Email</label>
+                  <mat-form-field appearance="outline" style="width: 100%">
+                    <mat-label style="font-size: 15px!important;" translate>Email</mat-label>
+                    <input formControlName="email" id="email" matInput placeholder="email"
+                           style="font-size: 15px;"
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="form-group">
+                  <label class="label" style="float: left;">User Name</label>
+                  <mat-form-field appearance="outline" style="width: 100%">
+                    <mat-label style="font-size: 15px!important;" translate>User Name</mat-label>
+                    <input formControlName="userName" id="userName" matInput placeholder="User Name"
+                           style="font-size: 15px;"
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="form-group">
+                  <label style="float: left;" class="label">Password</label>
+                  <mat-form-field appearance="outline" style="width: 100%">
+                    <mat-label style="font-size: 15px!important;" translate>Password</mat-label>
+                    <input style="padding-right: 22px;" matInput placeholder="Password" id="password"
+                           [type]="showPassword ? 'text' : 'password'" formControlName="password">
+                    <mat-icon class="position-absolute" style="right: -5px; top:12px" (click)="showHidePassword()">
+                      {{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+            <div *ngIf="isLoggedin === false">
+              <div class="sign-in-box">
+                <div class="mb-3">
+                  <div class="form-group">
+                    <button (click)="reqgister()" class="form-control btn btn-primary b-20" type="button">Sign Up
+                    </button>
+                  </div>
+                </div>
+                <div class="d-flex flex-row inline"><span class="ac"> Been here before? </span>
+                  <a class="a-link" routerLink="/login">Login</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

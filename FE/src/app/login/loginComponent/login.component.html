@@ -1,0 +1,97 @@
+<div class="loader loading-indicator" *ngIf="helper.APP_SHOW_PROCESSING | async">
+</div>
+<div class="main" >
+  <div class="container">
+      <div class="logo">
+          <img alt="" src="../../../assets/icons/FPT.png">
+      </div>
+      <div class="in-top-box">
+          <div class="inside-top-box">
+              <div class="left-side" style="display: flex; flex-flow: column nowrap;">
+                <div style="display: flex;     width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 100px;">
+                  <div>
+                    <mat-icon class="icon-display" svgIcon="ic_imgwrite"></mat-icon>
+                  </div>
+                  <div>
+                    <mat-icon class="icon-display" svgIcon="ic_imgbook"></mat-icon>
+                  </div>
+                  <div>
+                    <mat-icon class="icon-display" svgIcon="ic_imgluv"></mat-icon>
+                  </div>
+
+                </div>
+                  <div class=" text-white" style="float:left">
+                      <h2>Practice Coding Assignment Website
+                      </h2>
+                      <span class="text-white">
+                          <p class=" text-title">
+                           Welcome to our website! We are a platform dedicated to helping you improve your coding skills and expand your knowledge in web development. Whether you're a beginner or an experienced developer, we offer a variety of resources including tutorials, articles, and practice exercises to help you sharpen your coding abilities. Join our community of learners today and take the first step towards mastering web development!
+                          </p>
+                      </span>
+                  </div>
+              </div>
+              <div class="right-side">
+                  <div class="logo-hssk">
+                      <div class="logo-icon"></div>
+                  </div>
+                  <div class="title" translate>
+                      <p class="sign-in-tittle">Sign In</p>
+                      <form (keyup.enter)="login()" (submit)="login()" [formGroup]="loginForm">
+                        <div class="sign-in-box">
+                          <div class="form-group">
+                            <label class="label" style="float: left;">User Name</label>
+                            <mat-form-field appearance="outline" style="width: 100%">
+                              <mat-label style="font-size: 15px!important;" translate>User Name</mat-label>
+                              <input formControlName="userName" id="userName" matInput placeholder="User Name"
+                                     style="font-size: 15px;"
+                              >
+                            </mat-form-field>
+                          </div>
+                          <div class="form-group">
+                              <label style="float: left;" class="label">Password</label>
+                              <mat-form-field appearance="outline" style="width: 100%">
+                                <mat-label  style="font-size: 15px!important;" translate>Password</mat-label>
+                                <input style="padding-right: 22px;" matInput placeholder="Password" id="password"
+                                       [type]="showPassword ? 'text' : 'password'" formControlName="password" >
+                                <mat-icon class="position-absolute" style="right: -5px; top:12px" (click)="showHidePassword()">
+                                  {{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                      </form>
+                    <div *ngIf="isLoggedin === false">
+                      <div class="sign-in-box">
+                        <div class="mb-3">
+                          <div class="form-group">
+                            <button (click)="login()" class="form-control btn btn-primary bus b-20" mat-raised-button (keyup.enter)="login()"
+                                    style="background:#00bbd4;color:white" type="button">Sign in
+                            </button>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="form-group">
+                            <button (click)="loginWithGoogle()" class="form-control bus btn b-20"
+                                    style="background: #fef1f1" type="button">
+                              <div class="d-flex flex-row justify-content-center">
+                                <mat-icon svgIcon="ic_google"></mat-icon>
+                                <span style="color: #c71610 ;margin-left: 15px">
+                                Sign in
+                                </span>
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="d-flex flex-row inline"><span class="ac"> Don't Have a Account? </span>
+                          <a class="a-link" routerLink="/register">Sign
+                            Up</a> </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

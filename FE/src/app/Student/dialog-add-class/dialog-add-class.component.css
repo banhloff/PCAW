@@ -1,0 +1,68 @@
+.tittle-row{
+    display: flex;
+    flex-flow: nowrap;
+    margin: 20px;
+    justify-content: space-between;
+}
+.tittle-left{
+    display: flex;
+    flex-flow: nowrap;
+    justify-content: start;
+    align-items: center;
+}
+.tittle-join-class {
+  font-size: 20px;
+}
+
+.ng-value-container {
+  margin-top: 0px !important;
+}
+
+.class-code {
+  border: 3px solid #ccc;
+  margin: 57px;
+  width: 80%;
+  margin-top: 10px;
+  border-radius: 20px;
+  margin-bottom: 0px !important;
+}
+.account-name
+{
+  border: 3px solid #ccc;
+  margin: 57px;
+  width: 80%;
+  border-radius: 20px;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  display: flex;
+  align-items: center;
+  height: 70px;
+  justify-items: center;
+  justify-content: space-around;
+}
+
+.icon-dialog-close {
+  color: #323842;
+}
+
+.icon-display {
+  scale: calc(2);
+}
+
+.ng-value-container {
+  margin-top: 12px;
+}
+
+.mat-accent {
+  background-color: #00bdd6;
+  color: white !important;
+}
+
+.button-close {
+  background-color: white;
+  color: black;
+}
+
+.mat-icon {
+  scale: 2;
+}

@@ -1,0 +1,172 @@
+<div class="tittle-row">
+  <div class="tittle-left">
+    <h2 class="tittle-join-class ml-2">Update Information</h2>
+  </div>
+</div>
+<div *ngIf="helper.APP_SHOW_PROCESSING | async" class="loader loading-indicator"></div>
+<div *ngIf="!(helper.APP_SHOW_PROCESSING | async)" class="class-code container-fluid">
+  <form [formGroup]="submitForm" class="form-group">
+    <div class="row">
+      <div class="mb-6 col-lg-3 col-md-6 col-sm-12 ">
+        <label>ENROLL CODE</label>
+        <input class="form-control ng-value-container " formControlName="ENROLL_CODE" name="ENROLL_CODE"
+               type="text">
+      </div>
+
+      <div class="mb-6 col-lg-3 col-md-6 col-sm-12 ">
+        <label>CODE</label>
+        <input class="form-control ng-value-container " formControlName="CODE" name="CODE"
+               type="text">
+      </div>
+      <div class="mb-6 col-lg-3 col-md-6 col-sm-12 ">
+        <label>Name</label>
+        <input class="form-control ng-value-container " formControlName="NAME" name="NAME"
+               type="text">
+      </div>
+      <div class="col-3 col-md-3 col-lg-3 mb-3">
+        <label>Subject</label>
+        <ng-select
+          [items]="lstSubject"
+          [notFoundText]="'Not Found'"
+          [placeholder]="'Please select input'"
+          bindLabel="subject_code"
+          bindValue="id"
+          formControlName="SUBJECT"
+          name="subject">
+        </ng-select>
+      </div>
+      <div class="col-3 col-md-3 col-lg-3 mb-3">
+        <label>Semester</label>
+        <ng-select
+          [items]="lstSemester"
+          [notFoundText]="'Not Found'"
+          [placeholder]="'Please select input'"
+          bindLabel="name"
+          bindValue="id"
+          formControlName="SEMESTER"
+          name="SEMESTER">
+        </ng-select>
+      </div>
+      <div class="col-3 col-md-3 col-lg-3 mb-3">
+        <label>Teacher</label>
+        <ng-select
+          [items]="lstTeacher"
+          [notFoundText]="'Not Found'"
+          [placeholder]="'Please select input'"
+          bindLabel="email"
+          bindValue="id"
+          formControlName="INSTRUCTOR"
+          name="INSTRUCTOR">
+        </ng-select>
+      </div>
+      <div class="col-3 col-md-3 col-lg-3 mb-3">
+        <label>Langs</label>
+        <ng-select
+          [items]="lstLangs"
+          [notFoundText]="'Not Found'"
+          [placeholder]="'Please select input'"
+          bindLabel="Name"
+          bindValue="id"
+          formControlName="LANGS"
+          name="LANGS">
+        </ng-select>
+      </div>
+    </div>
+  </form>
+  <div class="example-container mat-elevation-z1">
+    <div class="example-loading-shade"
+         *ngIf="isLoading ">
+      <div *ngIf="isLoading" class="loader loading-indicator" ></div>
+    </div>
+  </div>
+  <div class="example-container mat-elevation-z3">
+    <div class="example-table-container">
+      <table [dataSource]="data" class="example-table" mat-table matSort matSortActive="created" matSortDirection="desc"
+             matSortDisableClear>
+        <ng-container matColumnDef="select">
+          <th *matHeaderCellDef mat-header-cell>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </th>
+          <td *matCellDef="let row" mat-cell>
+            <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                          (click)="$event.stopPropagation()"
+                          [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+<!--        <ng-container matColumnDef="CLASS">-->
+<!--          <th *matHeaderCellDef mat-header-cell>CLASS</th>-->
+<!--          <td *matCellDef="let row" class="align-items-center text-center" mat-cell>-->
+<!--            <div class="d-flex flex-row justify-content-evenly ">-->
+<!--              <div *ngIf="row.studies_classes.length>0">-->
+<!--                <button *ngFor="let a of row.studies_classes" class="btn-lst-class mx-1" disabled mat-flat-button-->
+<!--                        style="background: #f5f2fd;color: #8353e2">{{a.code}}</button>-->
+<!--              </div>-->
+<!--              <ng-container *ngIf="row.studies_classes.length==0">-->
+<!--                <button class="btn-lst-class mx-1" disabled mat-flat-button-->
+<!--                        style="background: #f5f2fd;color: #8353e2">&#45;&#45;-->
+<!--                </button>-->
+<!--              </ng-container>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--        </ng-container>-->
+<!--        <ng-container matColumnDef="SUBJECT">-->
+<!--          <th *matHeaderCellDef mat-header-cell>SUBJECT</th>-->
+<!--          <td *matCellDef="let row" mat-cell>-->
+<!--            <div class="d-flex flex-row justify-content-evenly ">-->
+<!--              <div *ngIf="row.studies_subjects.length>0">-->
+<!--                <button *ngFor="let a of row.studies_subjects" class="btn-lst mx-1" disabled mat-flat-button-->
+<!--                        style="background: #ef9834;color: white">{{a.subject_code}}</button>-->
+<!--              </div>-->
+<!--              <ng-container *ngIf="row.studies_subjects.length==0">-->
+<!--                <button class="btn-lst" disabled mat-flat-button-->
+<!--                        style="background: #00bdd6;color: white">Not Assign-->
+<!--                </button>-->
+<!--              </ng-container>-->
+<!--            </div>-->
+
+<!--          </td>-->
+<!--        </ng-container>-->
+        <!-- Title Column -->
+        <ng-container matColumnDef="EMAIL">
+          <th *matHeaderCellDef mat-header-cell>EMAIL</th>
+          <td *matCellDef="let row" mat-cell>
+            {{row.email}}
+          </td>
+        </ng-container>
+
+        <!-- State Column -->
+        <ng-container matColumnDef="NAME">
+          <th *matHeaderCellDef mat-header-cell>NAME</th>
+          <td *matCellDef="let row" class="cust-text" mat-cell>{{row.first_name}} {{row.last_name}}</td>
+        </ng-container>
+        <!--        <tr *matNoDataRow class="mat-row" style="text-align-last: center;">-->
+        <!--          <td [attr.colspan]="displayedColumns.length" class="mat-cell ">-->
+        <!--            No data-->
+        <!--          </td>-->
+        <!--        </tr>-->
+        <!-- Created Column -->
+        <ng-container matColumnDef="STUDENTCODE">
+          <th *matHeaderCellDef disableClear mat-header-cell mat-sort-header>
+            STUDENT CODE
+          </th>
+          <td *matCellDef="let row" class="cust-text float-start"
+              mat-cell>{{row.profile.code }}</td>
+        </ng-container>
+
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+      </table>
+    </div>
+
+    <mat-paginator [pageSize]="5"
+                   showFirstLastButtons
+    ></mat-paginator>
+  </div>
+  <div class="d-flex flex-row flex-lg-wrap justify-content-between">
+    <button (click)="update()" class="button-join" color="accent" mat-flat-button>Update information</button>
+  </div>
+</div>

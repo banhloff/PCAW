@@ -1,0 +1,121 @@
+<div *ngIf="helper.APP_SHOW_PROCESSING | async" class="loader loading-indicator"></div>
+<div class="example-container mat-elevation-z1">
+  <div class="example-loading-shade"
+       *ngIf="isLoading || isRateLimitReached">
+    <div *ngIf="isLoading" class="loader loading-indicator" ></div>
+  </div>
+</div>
+<div *ngIf="!(helper.APP_SHOW_PROCESSING | async)" class="container-fluid">
+  <form [formGroup]="submitForm" class="form-group">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-12 col-3 mb-3">
+        <label>Subject</label>
+        <ng-select
+          [items]="lstSubject"
+          [notFoundText]="'No Record Found'"
+          [placeholder]="'Please input choose'"
+          bindLabel="subject_code"
+          bindValue="subject_code"
+          formControlName="subject"
+          name="itemCode">
+        </ng-select>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12 col-3 mb-3">
+        <label>Class</label>
+        <ng-select
+          [items]="lstClass"
+          [notFoundText]="'No Record Found'"
+          [placeholder]="'Please input choose'"
+          bindLabel="code"
+          bindValue="code"
+          formControlName="class"
+          name="itemCode">
+        </ng-select>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12 col-3 mb-3">
+        <label>Semester</label>
+        <ng-select
+          [items]="lstSemester"
+          [notFoundText]="'No Record Found'"
+          [placeholder]="'Please input choose'"
+          bindLabel="name"
+          bindValue="name"
+          formControlName="semester"
+          name="itemCode">
+        </ng-select>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12 col-3 mb-3">
+        <label></label>
+        <button (click)="search()" class="btn btn-cus" mat-flat-button type="button">Search</button>
+        <button (click)="import()" class="btn btn-cus import" mat-flat-button type="button">import</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="example-container mat-elevation-z3">
+    <div class="example-table-container">
+      <table [dataSource]="data" class="example-table" mat-table matSort matSortActive="created" matSortDirection="desc"
+             matSortDisableClear>
+        <!-- Number Column -->
+        <!-- <ng-container matColumnDef="number">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let row">{{row.number}}</td>
+        </ng-container> -->
+        <ng-container matColumnDef="ACTION">
+          <th *matHeaderCellDef mat-header-cell></th>
+          <td *matCellDef="let row;" class="group-button">
+            <button (click)="edit(row)" class="mat-color" mat-flat-button>
+              Edit
+            </button>
+            <button (click)="delete(row)" class="mat-color-delete mat-color" mat-flat-button>
+              Delete
+            </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="STUDENT">
+          <th *matHeaderCellDef mat-header-cell>STUDENT</th>
+          <td *matCellDef="let row" mat-cell class="align-items-center text-center">{{row.std_count}}</td>
+        </ng-container>
+        <ng-container matColumnDef="SUBJECT">
+          <th *matHeaderCellDef mat-header-cell>SUBJECT</th>
+          <td *matCellDef="let row" mat-cell>
+            <button class="btn-lst" disabled mat-flat-button
+                    style="background: #ef9834;color: white">{{row.subject.subject_code}}</button>
+          </td>
+        </ng-container>
+        <!-- Title Column -->
+        <ng-container matColumnDef="INSTRUCTOR">
+          <th *matHeaderCellDef mat-header-cell>INSTRUCTOR</th>
+          <td *matCellDef="let row" mat-cell>
+            <button class="btn-lst" disabled mat-flat-button
+                    style="background: #4069e5;color: white">{{row.instructor.first_name}} {{row.instructor.last_name}}</button>
+          </td>
+        </ng-container>
+
+        <!-- State Column -->
+        <ng-container matColumnDef="CLASSNAME">
+          <th *matHeaderCellDef mat-header-cell>CLASS NAME</th>
+          <td *matCellDef="let row" mat-cell class="cust-text">{{row.name}}</td>
+        </ng-container>
+<!--        <tr *matNoDataRow class="mat-row" style="text-align-last: center;">-->
+<!--          <td [attr.colspan]="displayedColumns.length" class="mat-cell ">-->
+<!--            No data-->
+<!--          </td>-->
+<!--        </tr>-->
+        <!-- Created Column -->
+        <ng-container matColumnDef="CLASSCODE">
+          <th *matHeaderCellDef disableClear mat-header-cell mat-sort-header>
+            CLASS CODE
+          </th>
+          <td *matCellDef="let row" mat-cell class="align-items-center text-center" class="cust-text">{{row.enroll_code }}</td>
+        </ng-container>
+
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+      </table>
+    </div>
+
+    <mat-paginator [length]="LengthTotal" [pageSize]="resultsLength" showFirstLastButtons  (page)="handlePageEvent($event)"
+    ></mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+<!--<div class="container-fluid " style="margin-top: 50px;">-->
+<!--  <div class="row mx-md-1">-->
+<!--    <div class="col-lg-3 px-md-3">-->
+<!--      <div class="card-content">-->
+<!--        <button mat-raised-button class="button-process"-->
+<!--          style="color: white; background-color: rgb(44, 240, 223);">Processing</button>-->
+<!--        <div class="class-Name">SE1415-SWP-APHL_Spring2023</div>-->
+<!--        <div class="subject mt-3">-->
+<!--          <mat-icon>subject</mat-icon> Subject: <span class="subject-span">PRO192</span>-->
+<!--        </div>-->
+<!--        <div class="class">-->
+<!--          <mat-icon>class</mat-icon> Class: <span>SE1514-SWP-APHL-Spring2023</span>-->
+<!--        </div>-->
+<!--        <div class="dueDate">-->
+<!--          <mat-icon>date_range</mat-icon>Due date: <span>23:59 20/04/2023</span>-->
+<!--        </div>-->
+<!--        <a [routerLink]="['/class',1]">View Class <mat-icon>arrow_right_alt</mat-icon></a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-lg-3 px-md-3">-->
+<!--      <div class="card-content">-->
+<!--        <button mat-raised-button class="button-process"-->
+<!--          style="color: white; background-color: rgb(44, 240, 223);">Processing</button>-->
+<!--        <div class="class-Name">SE1415-SWP-APHL_Spring2023</div>-->
+<!--        <div class="subject mt-3">-->
+<!--          <mat-icon>subject</mat-icon> Subject: <span class="subject-span">PRO192</span>-->
+<!--        </div>-->
+<!--        <div class="class">-->
+<!--          <mat-icon>class</mat-icon> Class: <span>SE1514-SWP-APHL-Spring2023</span>-->
+<!--        </div>-->
+<!--        <div class="dueDate">-->
+<!--          <mat-icon>date_range</mat-icon>Due date: <span>23:59 20/04/2023</span>-->
+<!--        </div>-->
+<!--        <a [routerLink]="['/class',1]">View Class <mat-icon>arrow_right_alt</mat-icon></a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-lg-3 px-md-3">-->
+<!--      <div class="card-content">-->
+<!--        <button mat-raised-button class="button-process"-->
+<!--          style="color: white; background-color: rgb(44, 240, 223);">Processing</button>-->
+<!--        <div class="class-Name">SE1415-SWP-APHL_Spring2023</div>-->
+<!--        <div class="subject mt-3">-->
+<!--          <mat-icon>subject</mat-icon> Subject: <span class="subject-span">PRO192</span>-->
+<!--        </div>-->
+<!--        <div class="class">-->
+<!--          <mat-icon>class</mat-icon> Class: <span>SE1514-SWP-APHL-Spring2023</span>-->
+<!--        </div>-->
+<!--        <div class="dueDate">-->
+<!--          <mat-icon>date_range</mat-icon>Due date: <span>23:59 20/04/2023</span>-->
+<!--        </div>-->
+<!--        <a [routerLink]="['/class',1]">View Class <mat-icon>arrow_right_alt</mat-icon></a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-lg-3 px-md-3">-->
+<!--      <div class="card-content">-->
+<!--        <button mat-raised-button class="button-process"-->
+<!--          style="color: white; background-color: rgb(44, 240, 223);">Processing</button>-->
+<!--        <div class="class-Name">SE1415-SWP-APHL_Spring2023</div>-->
+<!--        <div class="subject mt-3">-->
+<!--          <mat-icon>subject</mat-icon> Subject: <span class="subject-span">PRO192</span>-->
+<!--        </div>-->
+<!--        <div class="class">-->
+<!--          <mat-icon>class</mat-icon> Class: <span>SE1514-SWP-APHL-Spring2023</span>-->
+<!--        </div>-->
+<!--        <div class="dueDate">-->
+<!--          <mat-icon>date_range</mat-icon>Due date: <span>23:59 20/04/2023</span>-->
+<!--        </div>-->
+<!--        <a [routerLink]="['student/class',1]">View Class <mat-icon>arrow_right_alt</mat-icon></a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<div class="loader loading-indicator" *ngIf="helper.APP_SHOW_PROCESSING | async">
+</div>
+<div class="container-fluid "*ngIf="!(helper.APP_SHOW_PROCESSING | async)" style="margin-top: 50px;">
+  <div class="row mx-md-1">
+    <div *ngFor="let result of data" class="col-lg-3 px-md-3 mb-3">
+      <app-d-card
+        process="{{result.process}}"
+        class="{{result.code}}"
+        dueDate="{{result.semester.date_end|date:'M/d/yy h:mm a'}}"
+        subject="{{result.subject.name}}"
+        instructor="{{result.instructor.email}}"
+        viewClassLink="../class/{{result.id}}">
+      </app-d-card>
+    </div>
+  </div>
+</div>
+<button (click)="openDialog()" class="circle-button" mat-fab>
+  <mat-icon class="icon-display"
+            svgIcon="ic-plus-custom"></mat-icon>
+</button>

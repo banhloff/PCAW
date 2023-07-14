@@ -1,0 +1,42 @@
+div{
+  margin-bottom: 6px;
+}
+
+//.ng-select.ng-select-multiple .ng-select-container .ng-value-container {
+  .ng-value {
+    text-align: left;
+    float: left;
+    transform: scale(-1) !important;
+
+  }
+//}
+.ng-value-icon {
+  position: relative;
+  float: right;
+  display: block;
+  transform: scaleY(-1);
+}
+.ng-value-label{
+  position: relative;
+  float: right;
+  display: block;
+  transform: scaleY(-1);
+}
+.multi-select-search .ng-select .ng-select-container .ng-value-container .ng-value {
+  text-align: left;
+  float: left;
+  transform: scale(-1) !important;
+
+}
+.ng-value-icon {
+  position: relative;
+  float: right;
+  display: block;
+  transform: scaleY(-1);
+}
+.ng-value-label{
+  position: relative;
+  float: right;
+  display: block;
+  transform: scaleY(-1);
+}
